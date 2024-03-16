@@ -1,0 +1,43 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://agency-data-db.cv4yku2kgh5l.eu-north-1.rds.amazonaws.com:5432/agencydata
+    username: postgres
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+  mail:
+    host: smtp.gmail.com
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    password: anhdmeroecfwmebs
+    username: ulvisab@code.edu.az
+    port: 587
+  security:
+    secret: bXMxNG1zMTRtczE0bXMxNG1zMTRtczE0bXMxNG1zMTRtczE0bXMxNG1zMTRtczE0bXMxNG1zMTRtczE0bXMxNA==
+    token:
+      expirationTime: 60
+  kafka:
+    consumer:
+      bootstrap-servers: ${KAFKA_HOST_NAME:localhost}:${KAFKA_PORT:9092}
+      properties:
+        group-id: telegram-bot
+    admin:
+      properties:
+        bootstrap.servers: ${KAFKA_HOST_NAME:localhost}:${KAFKA_PORT:9092}
+    producer:
+      bootstrap-servers: ${KAFKA_HOST_NAME:localhost}:${KAFKA_PORT:9092}
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        acks: all
+        retries: 10
+        retry.backoff.ms: 1000
+        max.block.ms: 20000
+        delivery.timeout.ms: 30000
+server:
+  port: 8081
